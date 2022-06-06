@@ -10,20 +10,42 @@ import {
 } from "../actions";
 
 const products_reducer = (state, action) => {
-  if (action.type === SIDEBAR_OPEN) {
-    return {
-      ...state,
-      isSidebarOpen: true,
-    };
-  }
+  switch (action.type) {
+    case SIDEBAR_OPEN:
+      return {
+        ...state,
+        isSidebarOpen: true,
+      };
+    case SIDEBAR_CLOSE:
+      return {
+        ...state,
+        isSidebarOpen: false,
+      };
+    case GET_PRODUCTS_BEGIN:
+      return {
+        ...state,
+        loadingProducts: true,
+      };
+    case GET_PRODUCTS_SUCCESS:
+      const featuredProducts = action.payload.filter(
+        (product) => product.featured === true
+      );
+      return {
+        ...state,
+        loadingProducts: false,
+        products: action.payload,
+        featuredProducts,
+      };
+    case GET_PRODUCTS_ERROR:
+      return {
+        ...state,
+        loadingProducts: false,
+        errorProducts: true,
+      };
 
-  if (action.type === SIDEBAR_CLOSE) {
-    return {
-      ...state,
-      isSidebarOpen: false,
-    };
+    default:
+      throw new Error(`No Matching "${action.type}" - action type`);
   }
-  throw new Error(`No Matching "${action.type}" - action type`);
 };
 
 export default products_reducer;

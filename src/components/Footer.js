@@ -28,6 +28,9 @@ const Wrapper = styled.footer`
     text-transform: none;
     line-height: 1.25;
   }
+  span {
+    margin: 0 0.5rem;
+  }
   @media (min-width: 776px) {
     flex-direction: row;
   }

@@ -82,8 +82,8 @@ const Filters = () => {
           <div className="form-control">
             <h5>colors</h5>
             <div className="colors">
-              {colors.map((c, index) => {
-                if (c === "all") {
+              {colors.map((item, index) => {
+                if (item === "all") {
                   return (
                     <button
                       key={index}
@@ -102,14 +102,14 @@ const Filters = () => {
                   <button
                     key={index}
                     name="color"
-                    style={{ background: c }}
+                    style={{ background: item }}
                     className={`${
-                      color === c ? "color-btn active" : "color-btn"
+                      color === item ? "color-btn active" : "color-btn"
                     }`}
-                    data-color={c}
+                    data-color={item}
                     onClick={updateFilters}
                   >
-                    {color === c ? <FaCheck /> : null}
+                    {color === item ? <FaCheck /> : null}
                   </button>
                 );
               })}

@@ -25,6 +25,7 @@ const products_reducer = (state, action) => {
       return {
         ...state,
         loadingProducts: true,
+        errorSingleProduct: false,
       };
     case GET_PRODUCTS_SUCCESS:
       const featuredProducts = action.payload.filter(
@@ -47,6 +48,7 @@ const products_reducer = (state, action) => {
       return {
         ...state,
         loadingSingleProduct: true,
+        errorSingleProduct: false,
       };
 
     case GET_SINGLE_PRODUCT_SUCCESS:
